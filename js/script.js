@@ -6,13 +6,23 @@ const typingText = document.querySelector(".typing-text p"),
     wpmTag = document.querySelector(".wpm span"),
     cpmTag = document.querySelector(".cpm span");
 
+const DEFAULT_TIME = 300;
+const CHARS_PER_WORD = 5;
+const SECONDS_PER_MINUTE = 60;
+const TIMER_INTERVAL = 1000;
+
 let timer,
-    maxTime = 300,
+    maxTime = DEFAULT_TIME,
     timeLeft = maxTime,
     charIndex = mistakes = isTyping = 0;
 
 function calculateWPM() {
-    let wpm = Math.round(((charIndex - mistakes) / 5) / (maxTime - timeLeft) * 60);
+    let wpm = Math.round(
+        ((charIndex - mistakes) / CHARS_PER_WORD) /
+        (maxTime - timeLeft) *
+        SECONDS_PER_MINUTE
+    );
+
     return wpm < 0 || !wpm || wpm === Infinity ? 0 : wpm;
 }
 
@@ -20,7 +30,7 @@ function loadParagraph() {
     const ranIndex = Math.floor(Math.random() * paragraphs.length);
     typingText.innerHTML = "";
     paragraphs[ranIndex].split("").forEach(char => {
-        let span = `<span>${char}</span>`
+        let span = `<span>${char}</span>`;
         typingText.innerHTML += span;
     });
     typingText.querySelectorAll("span")[0].classList.add("active");
@@ -31,11 +41,13 @@ function loadParagraph() {
 function initTyping() {
     let characters = typingText.querySelectorAll("span");
     let typedChar = inpField.value.split("")[charIndex];
+
     if (charIndex < characters.length - 1 && timeLeft > 0) {
         if (!isTyping) {
-            timer = setInterval(initTimer, 1000);
+            timer = setInterval(initTimer, TIMER_INTERVAL);
             isTyping = true;
         }
+
         if (typedChar == null) {
             if (charIndex > 0) {
                 charIndex--;
@@ -53,8 +65,10 @@ function initTyping() {
             }
             charIndex++;
         }
+
         characters.forEach(span => span.classList.remove("active"));
         characters[charIndex].classList.add("active");
+
         wpmTag.innerText = calculateWPM();
         mistakeTag.innerText = mistakes;
         cpmTag.innerText = charIndex - mistakes;
