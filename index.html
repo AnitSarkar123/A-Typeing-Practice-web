@@ -6,12 +6,15 @@
   <meta charset="utf-8">
   <title>Typing Speed Test Game | Anit Sarkar</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body class="dark-mode">
+<body class="light-mode" >
   <div class="theme-toggler">
-    <button>Theme</button>
+    <button class="theme-toggler-button" onclick={themeToggler()}>
+      <i class="fa-solid fa-moon" ></i>
+    </button>
   </div>
   <div class="wrapper">
     <input type="text" class="input-field">
