@@ -6,6 +6,20 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+:root{
+  --bg-color: #17A2B8;
+  --text-color: #fff;
+  --text-correct-color: #56964f;
+  --text-incorrect-color: #cb3439;
+  --text-incorrect-bg-color: #ffc0cb;
+  --text-selection-bg-color: #17A2B8;
+  --text-selection-color: #fff;
+  --button-bg-color: #17A2B8;
+  --button-text-color: #fff;
+  --button-hover-bg-color: #0b5661;
+  --wrapper-bg-color: #fff;
+  --line-color: #bfbfbf;
+}
 body{
   display: flex;
   padding: 0 10px;
