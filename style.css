@@ -23,7 +23,13 @@
   --line-color: #bfbfbf;
 }
 .light-mode{
-  --bg-color: #17A2B8;
+  --bg-color: linear-gradient(
+    135deg,
+  #4944a9,
+  #17A2B8,
+  skyblue,
+  #17A2B8, 
+  #4944a9);
   --text-color: #000;
 
   --text-correct-color: #56964f;
@@ -38,7 +44,7 @@
 
   --button-bg-color: #17A2B8;
   --button-text-color: #fff;
-  --button-hover-bg-color: #1491a4;
+  --button-hover-bg-color: #467fce;
 
   --wrapper-bg-color: #fff;
   --wrapper-border-color: #0000004d;
@@ -46,7 +52,14 @@
   --line-color: #bfbfbf;
 }
 .dark-mode {
-  --bg-color: #000;
+  background: linear-gradient(
+  135deg,
+  #161b22,
+  #1f2937,
+  #0f4c5c,
+  #1f2937,
+  #161b22
+);
   --text-color: #fff;
 
   --text-correct-color: #4ade80;
@@ -58,11 +71,11 @@
 
   --active-letter-color: #22d3ee;
 
-  --button-bg-color: #0e0875;
-  --button-text-color: #000;
+  --button-bg-color: #1f2937;
+  --button-text-color: #fff;
   --button-hover-bg-color: #2c287d;
 
-  --wrapper-bg-color: #1e293b;
+  --wrapper-bg-color: #222222;
   --wrapper-border-color: #334155;
 
   --line-color: #f0f0f3;
@@ -74,12 +87,12 @@ body{
   min-height: 100vh;
   background: var(--bg-color);
 }
-.theme-toggler button{
+.theme-toggler-button{
   position: absolute;
   top: 10px;
   right: 20px;
   color: var(--button-text-color);
-  padding: 8px 0;
+  padding: 8px 10px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
