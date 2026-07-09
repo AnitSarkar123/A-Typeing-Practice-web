@@ -22,21 +22,50 @@
   --wrapper-border-color: #0000004d;
   --line-color: #bfbfbf;
 }
-light-mode{
+.light-mode{
   --bg-color: #17A2B8;
   --text-color: #000;
+
   --text-correct-color: #56964f;
   --text-incorrect-color: #cb3439;
   --text-incorrect-bg-color: #ffc0cb;
+
   --text-selection-bg-color: #17A2B8;
+
   --text-selection-color: #fff;
+
   --active-letter-color: #17A2B8;
+
   --button-bg-color: #17A2B8;
   --button-text-color: #fff;
   --button-hover-bg-color: #1491a4;
+
   --wrapper-bg-color: #fff;
   --wrapper-border-color: #0000004d;
+
   --line-color: #bfbfbf;
+}
+.dark-mode {
+  --bg-color: #000;
+  --text-color: #fff;
+
+  --text-correct-color: #4ade80;
+  --text-incorrect-color: #f87171;
+  --text-incorrect-bg-color: #4b1d23;
+
+  --text-selection-bg-color: #0e0875;
+  --text-selection-color: #ffffff;
+
+  --active-letter-color: #22d3ee;
+
+  --button-bg-color: #0e0875;
+  --button-text-color: #000;
+  --button-hover-bg-color: #2c287d;
+
+  --wrapper-bg-color: #1e293b;
+  --wrapper-border-color: #334155;
+
+  --line-color: #f0f0f3;
 }
 body{
   padding: 0 10px;
@@ -96,6 +125,7 @@ body{
 }
 .typing-text p span{
   position: relative;
+  color: var(--text-color);
 }
 .typing-text p span.correct{
   color: var(--text-correct-color);
@@ -159,6 +189,7 @@ body{
   align-items: center;
   width: calc(100% - 140px);
   justify-content: space-between;
+  color: var(--text-color);
 }
 .result-details li{
   display: flex;
