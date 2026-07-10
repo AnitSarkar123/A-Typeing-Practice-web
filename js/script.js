@@ -5,7 +5,8 @@ const typingText = document.querySelector(".typing-text p"),
     mistakeTag = document.querySelector(".mistake span"),
     wpmTag = document.querySelector(".wpm span"),
     cpmTag = document.querySelector(".cpm span"),
-    progressTag = document.querySelector(".progress span");
+    progressTag = document.querySelector(".progress span"),
+    accuracyTag = document.querySelector(".accuracy span");
 
 const DEFAULT_TIME = 300;
 const CHARS_PER_WORD = 5;
@@ -29,6 +30,14 @@ function calculateWPM() {
 
 function calculateProgress(totalCharacters) {
     return Math.round((charIndex / totalCharacters) * 100);
+}
+
+function calculateAccuracy() {
+    if (charIndex === 0) {
+        return 100;
+    }
+
+    return Math.round(((charIndex - mistakes) / charIndex) * 100);
 }
 
 function loadParagraph() {
@@ -76,6 +85,7 @@ function initTyping() {
         mistakeTag.innerText = mistakes;
         cpmTag.innerText = charIndex - mistakes;
         progressTag.innerText = `${calculateProgress(characters.length)}%`;
+        accuracyTag.innerText = `${calculateAccuracy()}%`;
     } else {
         clearInterval(timer);
         inpField.value = "";
@@ -103,6 +113,7 @@ function resetGame() {
     mistakeTag.innerText = 0;
     cpmTag.innerText = 0;
     progressTag.innerText = "0%";
+    accuracyTag.innerText = "100%";
 }
 
 function themeToggler() {
