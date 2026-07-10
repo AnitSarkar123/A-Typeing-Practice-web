@@ -12,7 +12,7 @@
 
 <body class="light-mode" >
   <div class="theme-toggler">
-    <button class="theme-toggler-button" onclick={themeToggler()}>
+    <button class="theme-toggler-button">
       <i class="fa-solid fa-moon" ></i>
     </button>
   </div>
@@ -50,6 +50,15 @@
           </li>
         </ul>
         <button>Try Again</button>
+      </div>
+      <div class="last-session">
+        <h3>Last Session</h3>
+        <ul class="last-session-details">
+          <li>WPM: <span id="last-wpm">No Data</span></li>
+          <li>CPM: <span id="last-cpm">No Data</span></li>
+          <li>Accuracy: <span id="last-accuracy">No Data</span></li>
+          <li>Mistakes: <span id="last-mistakes">No Data</span></li>
+        </ul>
       </div>
     </div>
   </div>
