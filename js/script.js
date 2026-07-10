@@ -107,6 +107,23 @@ function resetGame() {
     progressTag.innerText = "0%";
 }
 
+function themeToggler() {
+    const body = document.body;
+    const themeButton = document.querySelector(".theme-toggler-button");
+    const themeIcon = themeButton.querySelector("i");
+
+    body.classList.toggle("dark-mode");
+    body.classList.toggle("light-mode");
+
+    if (body.classList.contains("dark-mode")) {
+        themeIcon.classList.replace("fa-moon", "fa-sun");
+        localStorage.setItem("theme", "dark");
+    } else {
+        themeIcon.classList.replace("fa-sun", "fa-moon");
+        localStorage.setItem("theme", "light");
+    }
+}
+
 loadParagraph();
 inpField.addEventListener("input", initTyping);
 tryAgainBtn.addEventListener("click", resetGame);

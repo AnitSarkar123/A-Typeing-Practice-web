@@ -6,24 +6,112 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+:root{
+  --bg-color: #17A2B8;
+  --text-color: #000;
+  --text-correct-color: #56964f;
+  --text-incorrect-color: #cb3439;
+  --text-incorrect-bg-color: #ffc0cb;
+  --text-selection-bg-color: #17A2B8;
+  --text-selection-color: #fff;
+  --active-letter-color: #17A2B8;
+  --button-bg-color: #17A2B8;
+  --button-text-color: #fff;
+  --button-hover-bg-color: #1491a4;
+  --wrapper-bg-color: #fff;
+  --wrapper-border-color: #0000004d;
+  --line-color: #bfbfbf;
+}
+.light-mode{
+  --bg-color: linear-gradient(
+    135deg,
+  #4944a9,
+  #17A2B8,
+  skyblue,
+  #17A2B8, 
+  #4944a9);
+  --text-color: #000;
+
+  --text-correct-color: #56964f;
+  --text-incorrect-color: #cb3439;
+  --text-incorrect-bg-color: #ffc0cb;
+
+  --text-selection-bg-color: #17A2B8;
+
+  --text-selection-color: #fff;
+
+  --active-letter-color: #17A2B8;
+
+  --button-bg-color: #17A2B8;
+  --button-text-color: #fff;
+  --button-hover-bg-color: #467fce;
+
+  --wrapper-bg-color: #fff;
+  --wrapper-border-color: #0000004d;
+
+  --line-color: #bfbfbf;
+}
+.dark-mode {
+  background: linear-gradient(
+  135deg,
+  #161b22,
+  #1f2937,
+  #0f4c5c,
+  #1f2937,
+  #161b22
+);
+  --text-color: #fff;
+
+  --text-correct-color: #4ade80;
+  --text-incorrect-color: #f87171;
+  --text-incorrect-bg-color: #4b1d23;
+
+  --text-selection-bg-color: #0e0875;
+  --text-selection-color: #ffffff;
+
+  --active-letter-color: #22d3ee;
+
+  --button-bg-color: #1f2937;
+  --button-text-color: #fff;
+  --button-hover-bg-color: #2c287d;
+
+  --wrapper-bg-color: #222222;
+  --wrapper-border-color: #334155;
+
+  --line-color: #f0f0f3;
+}
 body{
-  display: flex;
   padding: 0 10px;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #17A2B8;
+  background: var(--bg-color);
+}
+.theme-toggler-button{
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: var(--button-text-color);
+  padding: 8px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  background: var(--button-bg-color);
+}
+.theme-toggler button:hover{
+  background: var(--button-hover-bg-color);
 }
 ::selection{
-  color: #fff;
-  background: #17A2B8;
+  color: var(--text-selection-color);
+  background: var(--text-selection-bg-color);
 }
 .wrapper{
+  margin: 20vh auto;
   width: 770px;
   padding: 35px;
-  background: #fff;
+  background: var(--wrapper-bg-color);
   border-radius: 10px;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 15px var(--wrapper-border-color);
 }
 .wrapper .input-field{
   opacity: 0;
@@ -33,7 +121,7 @@ body{
 .wrapper .content-box{
   padding: 13px 20px 0;
   border-radius: 10px;
-  border: 1px solid #bfbfbf;
+  border: 1px solid var(--line-color);
 }
 .content-box .typing-text{
   overflow: hidden;
@@ -50,18 +138,19 @@ body{
 }
 .typing-text p span{
   position: relative;
+  color: var(--text-color);
 }
 .typing-text p span.correct{
-  color: #56964f;
+  color: var(--text-correct-color);
 }
 .typing-text p span.incorrect{
-  color: #cb3439;
-  outline: 1px solid #fff;
-  background: #ffc0cb;
+  color: var(--text-incorrect-color);
+  outline: 1px solid var(--wrapper-bg-color);
+  background: var(--text-incorrect-bg-color);
   border-radius: 4px;
 }
 .typing-text p span.active{
-  color: #17A2B8;
+  color: var(--active-letter-color);
 }
 .typing-text p span.active::before{
   position: absolute;
@@ -72,7 +161,7 @@ body{
   left: 0;
   opacity: 0;
   border-radius: 5px;
-  background: #17A2B8;
+  background: var(--active-letter-color);
   animation: blink 1s ease-in-out infinite;
 }
 @keyframes blink{
@@ -87,22 +176,25 @@ body{
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid #bfbfbf;
+  border-top: 1px solid var(--line-color);
 }
 .content button{
   outline: none;
   border: none;
   width: 105px;
-  color: #fff;
+  color: var(--button-text-color);
   padding: 8px 0;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
-  background: #17A2B8;
+  background: var(--button-bg-color);
   transition: transform 0.3s ease;
 }
 .content button:active{
   transform: scale(0.97);
+}
+.content button:hover{
+  background: var(--button-hover-bg-color);
 }
 .content .result-details{
   display: flex;
@@ -110,6 +202,7 @@ body{
   align-items: center;
   width: calc(100% - 140px);
   justify-content: space-between;
+  color: var(--text-color);
 }
 .result-details li{
   display: flex;
@@ -120,7 +213,7 @@ body{
 }
 .result-details li:not(:first-child){
   padding-left: 22px;
-  border-left: 1px solid #bfbfbf;
+  border-left: 1px solid var(--line-color);
 }
 .result-details li p{
   font-size: 19px;
