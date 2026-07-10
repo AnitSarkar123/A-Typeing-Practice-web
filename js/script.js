@@ -8,10 +8,18 @@ const typingText = document.querySelector(".typing-text p"),
     progressTag = document.querySelector(".progress span"),
     accuracyTag = document.querySelector(".accuracy span");
 
+const lastWpmTag = document.getElementById("last-wpm"),
+    lastCpmTag = document.getElementById("last-cpm"),
+    lastAccuracyTag = document.getElementById("last-accuracy"),
+    lastMistakeTag = document.getElementById("last-mistakes");
+
 const DEFAULT_TIME = 300;
 const CHARS_PER_WORD = 5;
 const SECONDS_PER_MINUTE = 60;
 const TIMER_INTERVAL = 1000;
+
+const STORAGE_KEY = "typing-last-session";
+let sessionSaved = false;
 
 let timer,
     maxTime = DEFAULT_TIME,
@@ -38,6 +46,42 @@ function calculateAccuracy() {
     }
 
     return Math.round(((charIndex - mistakes) / charIndex) * 100);
+}
+
+function saveLastSession() {
+    if (sessionSaved) return;
+
+    const session = {
+        wpm: calculateWPM(),
+        cpm: charIndex - mistakes,
+        accuracy: calculateAccuracy(),
+        mistakes: mistakes
+    };
+
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+        loadLastSession();
+        sessionSaved = true;
+    } catch (error) {
+        console.error("Failed to save your typing session:", error);
+    }
+}
+
+function loadLastSession() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (!stored) {
+        return;
+    }
+
+    try {
+        const session = JSON.parse(stored);
+        lastWpmTag.innerText = session.wpm;
+        lastCpmTag.innerText = session.cpm;
+        lastAccuracyTag.innerText = `${session.accuracy}%`;
+        lastMistakeTag.innerText = session.mistakes;
+    } catch (error) {
+        localStorage.removeItem(STORAGE_KEY);
+    }
 }
 
 function loadParagraph() {
@@ -87,6 +131,7 @@ function initTyping() {
         progressTag.innerText = `${calculateProgress(characters.length)}%`;
         accuracyTag.innerText = `${calculateAccuracy()}%`;
     } else {
+        saveLastSession();
         clearInterval(timer);
         inpField.value = "";
     }
@@ -98,6 +143,7 @@ function initTimer() {
         timeTag.innerText = timeLeft;
         wpmTag.innerText = calculateWPM();
     } else {
+        saveLastSession();
         clearInterval(timer);
     }
 }
@@ -105,6 +151,7 @@ function initTimer() {
 function resetGame() {
     loadParagraph();
     clearInterval(timer);
+    sessionSaved = false;
     timeLeft = maxTime;
     charIndex = mistakes = isTyping = 0;
     inpField.value = "";
@@ -134,6 +181,8 @@ function themeToggler() {
 }
 
 loadParagraph();
+loadLastSession();
+
 document.addEventListener("keydown", () => inpField.focus());
 typingText.addEventListener("click", () => inpField.focus());
 
