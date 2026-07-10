@@ -39,8 +39,6 @@ function loadParagraph() {
         typingText.innerHTML += span;
     });
     typingText.querySelectorAll("span")[0].classList.add("active");
-    document.addEventListener("keydown", () => inpField.focus());
-    typingText.addEventListener("click", () => inpField.focus());
 }
 
 function initTyping() {
@@ -125,5 +123,8 @@ function themeToggler() {
 }
 
 loadParagraph();
+document.addEventListener("keydown", () => inpField.focus());
+typingText.addEventListener("click", () => inpField.focus());
+
 inpField.addEventListener("input", initTyping);
 tryAgainBtn.addEventListener("click", resetGame);
