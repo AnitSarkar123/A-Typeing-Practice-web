@@ -1,4 +1,7 @@
 const typingText = document.querySelector(".typing-text p"),
+    modeSelect = document.getElementById("mode-select"),
+    keySelector = document.getElementById("key-selector"),
+    keySelect = document.getElementById("key-select"),
     inpField = document.querySelector(".wrapper .input-field"),
     tryAgainBtn = document.querySelector(".content button"),
     timeTag = document.querySelector(".time span b"),
@@ -20,6 +23,11 @@ const TIMER_INTERVAL = 1000;
 
 const STORAGE_KEY = "typing-last-session";
 let sessionSaved = false;
+const typingModes = {
+    paragraphs,
+    words,
+    sentences
+};
 
 let timer,
     maxTime = DEFAULT_TIME,
@@ -84,14 +92,30 @@ function loadLastSession() {
     }
 }
 
-function loadParagraph() {
-    const ranIndex = Math.floor(Math.random() * paragraphs.length);
+function generateKeyPractice() {
+    return keySets[keySelect.value][
+        Math.floor(Math.random() * keySets[keySelect.value].length)
+    ];
+}
+
+function loadTypingContent() {
+    let text = "";
+
+    if (modeSelect.value === "specificKey") {
+        text = generateKeyPractice();
+    } else {
+        const dataset = typingModes[modeSelect.value];
+        const randomIndex = Math.floor(Math.random() * dataset.length);
+        text = dataset[randomIndex];
+    }
+
     typingText.innerHTML = "";
-    paragraphs[ranIndex].split("").forEach(char => {
-        let span = `<span>${char}</span>`;
-        typingText.innerHTML += span;
+
+    text.split("").forEach(char => {
+        typingText.innerHTML += `<span>${char}</span>`;
     });
-    typingText.querySelectorAll("span")[0].classList.add("active");
+
+    typingText.querySelector("span").classList.add("active");
 }
 
 function initTyping() {
@@ -149,8 +173,9 @@ function initTimer() {
 }
 
 function resetGame() {
-    loadParagraph();
     clearInterval(timer);
+    loadTypingContent();
+    timer = null;
     sessionSaved = false;
     timeLeft = maxTime;
     charIndex = mistakes = isTyping = 0;
@@ -180,11 +205,18 @@ function themeToggler() {
     }
 }
 
-loadParagraph();
+keySelector.hidden = modeSelect.value !== "specificKey";
+loadTypingContent();
 loadLastSession();
 
 document.addEventListener("keydown", () => inpField.focus());
 typingText.addEventListener("click", () => inpField.focus());
 
+modeSelect.addEventListener("change", () => {
+    keySelector.hidden = modeSelect.value !== "specificKey";
+    resetGame();
+});
+
+keySelect.addEventListener("change", resetGame);
 inpField.addEventListener("input", initTyping);
 tryAgainBtn.addEventListener("click", resetGame);
