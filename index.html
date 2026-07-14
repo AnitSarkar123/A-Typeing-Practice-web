@@ -12,13 +12,35 @@
 
 <body class="light-mode" >
   <div class="theme-toggler">
-    <button class="theme-toggler-button">
+    <button class="theme-toggler-button" type="button">
       <i class="fa-solid fa-moon" ></i>
     </button>
   </div>
+
   <div class="wrapper">
     <input type="text" class="input-field">
+
     <div class="content-box">
+
+      <div class="typing-options">
+        <label for="mode-select">Mode:</label>
+        <select id="mode-select">
+          <option value="paragraphs">Paragraphs</option>
+          <option value="words">Words</option>
+          <option value="sentences">Sentences</option>
+          <option value="specificKey">Specific Key</option>
+        </select>
+        <span id="key-selector" hidden>
+          <label for="key-select">Key:</label>
+          <select id="key-select">
+            <option value="homeRow">Home Row</option>
+            <option value="topRow">Top Row</option>
+            <option value="bottomRow">Bottom Row</option>
+            <option value="numbers">Numbers</option>
+            <option value="symbols">Symbols</option>
+          </select>
+        </span>
+      </div>
       <div class="typing-text">
         <p></p>
       </div>
@@ -49,7 +71,7 @@
             <span>100%</span>
           </li>
         </ul>
-        <button>Try Again</button>
+        <button type="button">Try Again</button>
       </div>
       <div class="last-session">
         <h3>Last Session</h3>
@@ -65,7 +87,6 @@
 
   <script src="js/paragraphs.js"></script>
   <script src="js/script.js"></script>
-
 </body>
 
 </html>

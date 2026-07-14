@@ -21,3 +21,246 @@ const paragraphs = [
     "A reptant discussion's rest comes with it the thought that the condemned syrup is a wish. The drake of a wallaby becomes a sonant harp. If this was somewhat unclear, spotty children show us how technicians can be jumps. Their honey was, in this moment, an intime direction. A ship is the lion of a hate. They were lost without the croupous jeep that composed their lily. In modern times a butcher of the birth is assumed to be a spiral bean.",
     "Those cowbells are nothing more than elements. This could be, or perhaps before stockings, thoughts were only opinions. A coil of the exclamation is assumed to be a hurtless toy. A board is the cast of a religion. In ancient times the first stinko sailboat is, in its own way, an exchange. Few can name a tutti channel that isn't a footless operation. Extending this logic, an oatmeal is the rooster of a shake. Those step-sons are nothing more than matches."
 ];
+
+const words = [
+    "keyboard",
+    "computer",
+    "developer",
+    "function",
+    "variable",
+    "browser",
+    "internet",
+    "practice",
+    "accuracy",
+    "performance",
+    "terminal",
+    "repository",
+    "algorithm",
+    "database",
+    "network",
+    "frontend",
+    "backend",
+    "javascript",
+    "python",
+    "compiler",
+    "debugging",
+    "project",
+    "coding",
+    "software",
+    "hardware",
+    "monitor",
+    "laptop",
+    "desktop",
+    "application",
+    "document",
+    "framework",
+    "library",
+    "package",
+    "version",
+    "testing",
+    "deployment",
+    "interface",
+    "responsive",
+    "security",
+    "developer",
+    "opensource",
+    "keyboard",
+    "challenge",
+    "productivity",
+    "efficient",
+    "solution",
+    "feature",
+    "component",
+    "website",
+    "engineer"
+];
+
+const sentences = [
+    "Practice a little every day to improve your typing speed.",
+    "Consistency is more important than perfection.",
+    "Reading books expands both knowledge and vocabulary.",
+    "Technology changes faster than ever before.",
+    "The early bird catches the worm.",
+    "Learning never truly ends.",
+    "Small improvements compound into remarkable results.",
+    "Every mistake is an opportunity to learn.",
+    "Clean code is easier to maintain.",
+    "Good habits are built through repetition.",
+    "The sun rises in the east every morning.",
+    "Music can improve focus during work.",
+    "Typing quickly requires patience and practice.",
+    "Open source projects help developers grow.",
+    "Exercise keeps both the body and mind healthy.",
+    "A calm mind solves difficult problems better.",
+    "Coffee is a favorite drink for many programmers.",
+    "Never stop asking thoughtful questions.",
+    "Simple solutions are often the best solutions.",
+    "Knowledge grows when it is shared with others.",
+    "A journey of a thousand miles begins with one step.",
+    "Healthy sleep improves productivity.",
+    "Debugging teaches valuable problem solving skills.",
+    "Reading documentation saves hours of frustration.",
+    "Writing code is a creative process.",
+    "Discipline beats motivation over the long term.",
+    "Success comes from consistent effort.",
+    "Programming is both logic and creativity.",
+    "Every expert was once a beginner.",
+    "Patience is essential for mastering any skill.",
+    "Learning keyboard shortcuts increases efficiency.",
+    "Teamwork leads to better software.",
+    "Practice makes permanent when done correctly.",
+    "Nature offers peace and inspiration.",
+    "Curiosity drives innovation.",
+    "Planning before coding reduces mistakes.",
+    "Strong foundations lead to better results.",
+    "Communication is an important technical skill.",
+    "Hard work creates new opportunities.",
+    "Keep learning and keep building."
+];
+
+const keySets = {
+    a: [
+        "aaaaa aaaaa aaaaa aaaaa",
+        "aa aa aaa aaaa aaaaa",
+        "a aa aaa aaaa aaaaa"
+    ],
+
+    b: [
+        "bbbbb bbbbb bbbbb",
+        "bb bb bbb bbbb"
+    ],
+
+    c: [
+        "ccccc ccccc ccccc",
+        "cc cc ccc cccc"
+    ],
+
+    d: [
+        "ddddd ddddd ddddd",
+        "dd dd ddd dddd"
+    ],
+
+    e: [
+        "eeeee eeeee eeeee",
+        "ee ee eee eeee"
+    ],
+
+    f: [
+        "fffff fffff fffff",
+        "ff ff fff ffff"
+    ],
+
+    g: [
+        "ggggg ggggg ggggg",
+        "gg gg ggg gggg"
+    ],
+
+    h: [
+        "hhhhh hhhhh hhhhh",
+        "hh hh hhh hhhh"
+    ],
+
+    i: [
+        "iiiii iiiii iiiii",
+        "ii ii iii iiii"
+    ],
+
+    j: [
+        "jjjjj jjjjj jjjjj",
+        "jj jj jjj jjjj"
+    ],
+
+    k: [
+        "kkkkk kkkkk kkkkk",
+        "kk kk kkk kkkk"
+    ],
+
+    l: [
+        "lllll lllll lllll",
+        "ll ll lll llll"
+    ],
+
+    m: [
+        "mmmmm mmmmm mmmmm",
+        "mm mm mmm mmmm"
+    ],
+
+    n: [
+        "nnnnn nnnnn nnnnn",
+        "nn nn nnn nnnn"
+    ],
+
+    o: [
+        "ooooo ooooo ooooo",
+        "oo oo ooo oooo"
+    ],
+
+    p: [
+        "ppppp ppppp ppppp",
+        "pp pp ppp pppp"
+    ],
+
+    q: [
+        "qqqqq qqqqq qqqqq",
+        "qq qq qqq qqqq"
+    ],
+
+    r: [
+        "rrrrr rrrrr rrrrr",
+        "rr rr rrr rrrr"
+    ],
+
+    s: [
+        "sssss sssss sssss",
+        "ss ss sss ssss"
+    ],
+
+    t: [
+        "ttttt ttttt ttttt",
+        "tt tt ttt tttt"
+    ],
+
+    u: [
+        "uuuuu uuuuu uuuuu",
+        "uu uu uuu uuuu"
+    ],
+
+    v: [
+        "vvvvv vvvvv vvvvv",
+        "vv vv vvv vvvv"
+    ],
+
+    w: [
+        "wwwww wwwww wwwww",
+        "ww ww www wwww"
+    ],
+
+    x: [
+        "xxxxx xxxxx xxxxx",
+        "xx xx xxx xxxx"
+    ],
+
+    y: [
+        "yyyyy yyyyy yyyyy",
+        "yy yy yyy yyyy"
+    ],
+
+    z: [
+        "zzzzz zzzzz zzzzz",
+        "zz zz zzz zzzz"
+    ],
+
+    numbers: [
+        "11111 22222 33333 44444",
+        "55555 66666 77777 88888",
+        "99999 00000"
+    ],
+
+    symbols: [
+        "!!!!! ????? ..... ,,,,,",
+        "@@@@@ ##### $$$$$ %%%%%",
+        "&&&&& ***** ((((( )))))",
+        "_____ +++++ ----- =====",
+        "<<<<< >>>>> /////"
+    ]
+};
