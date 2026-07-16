@@ -64,7 +64,6 @@ document.addEventListener('keypress',(e) => {
 })
 
 function calculateKeyspressed(){
-    console.log(keysPressedCount);
     return keysPressedCount;
 }
 
@@ -134,7 +133,6 @@ function loadTypingContent() {
 }
 
 function initTyping() {
-    console.log("start");
     let characters = typingText.querySelectorAll("span");
     let typedChar = inpField.value.split("")[charIndex];
 
