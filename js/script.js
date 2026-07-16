@@ -123,24 +123,20 @@ function loadTypingContent() {
         text = dataset[randomIndex];
     }
 
-    typingText.innerHTML = "";
+    const fragment = document.createDocumentFragment();
 
     text.split("").forEach(char => {
-        typingText.innerHTML += `<span>${char}</span>`;
+        const span = document.createElement("span");
+        span.textContent = char;
+        fragment.appendChild(span);
     });
 
-    typingText.querySelector("span").classList.add("active");
-}
+    typingText.replaceChildren(fragment);
 
-function endTypingTest() {
-    clearInterval(timer);
-    timer = null;
-    isTyping = false;
-
-    saveLastSession();
-
-    inpField.value = "";
-    inpField.blur();
+    const firstSpan = typingText.querySelector("span");
+    if (firstSpan) {
+        firstSpan.classList.add("active");
+    }
 }
 
 function initTyping() {
