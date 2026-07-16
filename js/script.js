@@ -9,7 +9,8 @@ const typingText = document.querySelector(".typing-text p"),
     wpmTag = document.querySelector(".wpm span"),
     cpmTag = document.querySelector(".cpm span"),
     progressTag = document.querySelector(".progress span"),
-    accuracyTag = document.querySelector(".accuracy span");
+    accuracyTag = document.querySelector(".accuracy span"),
+    keysPressedTag = document.querySelector(".charCount span");
 
 const lastWpmTag = document.getElementById("last-wpm"),
     lastCpmTag = document.getElementById("last-cpm"),
@@ -32,7 +33,8 @@ const typingModes = {
 let timer,
     maxTime = DEFAULT_TIME,
     timeLeft = maxTime,
-    charIndex = mistakes = isTyping = 0;
+    charIndex = mistakes = isTyping = 0,
+    keysPressedCount = 0;
 
 function calculateWPM() {
     let wpm = Math.round(
@@ -54,6 +56,15 @@ function calculateAccuracy() {
     }
 
     return Math.round(((charIndex - mistakes) / charIndex) * 100);
+}
+
+document.addEventListener('keypress',(e) => {
+    keysPressedCount++;
+})
+
+function calculateKeyspressed(){
+    console.log(keysPressedCount);
+    return keysPressedCount;
 }
 
 function saveLastSession() {
@@ -119,6 +130,7 @@ function loadTypingContent() {
 }
 
 function initTyping() {
+    console.log("start");
     let characters = typingText.querySelectorAll("span");
     let typedChar = inpField.value.split("")[charIndex];
 
@@ -154,6 +166,7 @@ function initTyping() {
         cpmTag.innerText = charIndex - mistakes;
         progressTag.innerText = `${calculateProgress(characters.length)}%`;
         accuracyTag.innerText = `${calculateAccuracy()}%`;
+        keysPressedTag.innerText = `${calculateKeyspressed()}`;
     } else {
         saveLastSession();
         clearInterval(timer);
