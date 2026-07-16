@@ -9,12 +9,14 @@ const typingText = document.querySelector(".typing-text p"),
     wpmTag = document.querySelector(".wpm span"),
     cpmTag = document.querySelector(".cpm span"),
     progressTag = document.querySelector(".progress span"),
-    accuracyTag = document.querySelector(".accuracy span");
+    accuracyTag = document.querySelector(".accuracy span"),
+    keysPressedTag = document.querySelector(".charCount span");
 
 const lastWpmTag = document.getElementById("last-wpm"),
     lastCpmTag = document.getElementById("last-cpm"),
     lastAccuracyTag = document.getElementById("last-accuracy"),
-    lastMistakeTag = document.getElementById("last-mistakes");
+    lastMistakeTag = document.getElementById("last-mistakes"),
+    lastKeysPressedTag = document.getElementById("last-keys-pressed");
 
 const DEFAULT_TIME = 300;
 const CHARS_PER_WORD = 5;
@@ -32,7 +34,8 @@ const typingModes = {
 let timer,
     maxTime = DEFAULT_TIME,
     timeLeft = maxTime,
-    charIndex = mistakes = isTyping = 0;
+    charIndex = mistakes = isTyping = 0,
+    keysPressedCount = 0;
 
 function calculateWPM() {
     let wpm = Math.round(
@@ -56,6 +59,14 @@ function calculateAccuracy() {
     return Math.round(((charIndex - mistakes) / charIndex) * 100);
 }
 
+document.addEventListener('keypress',(e) => {
+    keysPressedCount++;
+})
+
+function calculateKeyspressed(){
+    return keysPressedCount;
+}
+
 function saveLastSession() {
     if (sessionSaved) return;
 
@@ -63,8 +74,10 @@ function saveLastSession() {
         wpm: calculateWPM(),
         cpm: charIndex - mistakes,
         accuracy: calculateAccuracy(),
-        mistakes: mistakes
+        mistakes: mistakes,
+        keysPressed: keysPressedCount
     };
+    console.log(keysPressedCount);
 
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
@@ -87,6 +100,7 @@ function loadLastSession() {
         lastCpmTag.innerText = session.cpm;
         lastAccuracyTag.innerText = `${session.accuracy}%`;
         lastMistakeTag.innerText = session.mistakes;
+        lastKeysPressedTag.innerText = session.keysPressed ?? 0;
     } catch (error) {
         localStorage.removeItem(STORAGE_KEY);
     }
@@ -176,6 +190,7 @@ function initTyping() {
         cpmTag.innerText = charIndex - mistakes;
         progressTag.innerText = `${calculateProgress(characters.length)}%`;
         accuracyTag.innerText = `${calculateAccuracy()}%`;
+        keysPressedTag.innerText = `${calculateKeyspressed()}`;
     } else {
         saveLastSession();
     }
@@ -199,6 +214,7 @@ function resetGame() {
     isTyping = false;
     timeLeft = maxTime;
     charIndex = mistakes = isTyping = 0;
+    keysPressedCount = 0;
     inpField.value = "";
     timeTag.innerText = timeLeft;
     wpmTag.innerText = 0;
@@ -206,6 +222,7 @@ function resetGame() {
     cpmTag.innerText = 0;
     progressTag.innerText = "0%";
     accuracyTag.innerText = "100%";
+    keysPressedTag.innerText = 0;
 }
 
 function themeToggler() {
