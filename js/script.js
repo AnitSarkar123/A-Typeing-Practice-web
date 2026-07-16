@@ -118,6 +118,17 @@ function loadTypingContent() {
     typingText.querySelector("span").classList.add("active");
 }
 
+function endTypingTest() {
+    clearInterval(timer);
+    timer = null;
+    isTyping = false;
+
+    saveLastSession();
+
+    inpField.value = "";
+    inpField.blur();
+}
+
 function initTyping() {
     let characters = typingText.querySelectorAll("span");
     let typedChar = inpField.value.split("")[charIndex];
@@ -144,6 +155,17 @@ function initTyping() {
                 characters[charIndex].classList.add("incorrect");
             }
             charIndex++;
+            
+            if (charIndex >= characters.length) {
+                wpmTag.innerText = calculateWPM();
+                mistakeTag.innerText = mistakes;
+                cpmTag.innerText = charIndex - mistakes;
+                progressTag.innerText = "100%";
+                accuracyTag.innerText = `${calculateAccuracy()}%`;
+                
+                endTypingTest();
+                return;
+            }
         }
 
         characters.forEach(span => span.classList.remove("active"));
@@ -156,8 +178,6 @@ function initTyping() {
         accuracyTag.innerText = `${calculateAccuracy()}%`;
     } else {
         saveLastSession();
-        clearInterval(timer);
-        inpField.value = "";
     }
 }
 
@@ -168,7 +188,6 @@ function initTimer() {
         wpmTag.innerText = calculateWPM();
     } else {
         saveLastSession();
-        clearInterval(timer);
     }
 }
 
@@ -177,6 +196,7 @@ function resetGame() {
     loadTypingContent();
     timer = null;
     sessionSaved = false;
+    isTyping = false;
     timeLeft = maxTime;
     charIndex = mistakes = isTyping = 0;
     inpField.value = "";
