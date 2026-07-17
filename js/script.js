@@ -270,11 +270,23 @@ function themeToggler() {
     }
 }
 
+function handleKeyboardShortcuts(event) {
+    if (
+        document.activeElement === inpField &&
+        event.ctrlKey &&
+        event.key.toLowerCase() === "r"
+    ) {
+        event.preventDefault();
+        resetGame();
+    }
+}
+
 keySelector.hidden = modeSelect.value !== "specificKey";
 loadTypingContent();
 loadLastSession();
 
 document.addEventListener("keydown", () => inpField.focus());
+document.addEventListener("keydown", handleKeyboardShortcuts);
 typingText.addEventListener("click", () => inpField.focus());
 
 modeSelect.addEventListener("change", () => {
