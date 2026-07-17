@@ -35,11 +35,12 @@ let timer,
     maxTime = DEFAULT_TIME,
     timeLeft = maxTime,
     charIndex = mistakes = isTyping = 0,
-    keysPressedCount = 0;
+    keysPressedCount = 0,
+    totalCorrectChars = 0;
 
 function calculateWPM() {
     let wpm = Math.round(
-        ((charIndex - mistakes) / CHARS_PER_WORD) /
+        (totalCorrectChars / CHARS_PER_WORD) /
         (maxTime - timeLeft) *
         SECONDS_PER_MINUTE
     );
@@ -52,11 +53,12 @@ function calculateProgress(totalCharacters) {
 }
 
 function calculateAccuracy() {
-    if (charIndex === 0) {
+    const totalTyped = totalCorrectChars + mistakes;
+    if (totalTyped === 0) {
         return 100;
     }
 
-    return Math.round(((charIndex - mistakes) / charIndex) * 100);
+    return Math.round((totalCorrectChars / totalTyped) * 100);
 }
 
 document.addEventListener('keypress',(e) => {
@@ -72,7 +74,7 @@ function saveLastSession() {
 
     const session = {
         wpm: calculateWPM(),
-        cpm: charIndex - mistakes,
+        cpm: totalCorrectChars,
         accuracy: calculateAccuracy(),
         mistakes: mistakes,
         keysPressed: keysPressedCount
@@ -143,33 +145,53 @@ function initTyping() {
     let characters = typingText.querySelectorAll("span");
     let typedChar = inpField.value.split("")[charIndex];
 
-    if (charIndex < characters.length - 1 && timeLeft > 0) {
+    if (timeLeft > 0) {
         if (!isTyping) {
             timer = setInterval(initTimer, TIMER_INTERVAL);
             isTyping = true;
         }
 
         if (typedChar == null) {
-            if (charIndex > 0) {
-                charIndex--;
-                if (characters[charIndex].classList.contains("incorrect")) {
-                    mistakes--;
+            if (charIndex > 0 || (characters[charIndex] && characters[charIndex].classList.contains("incorrect"))) {
+                if (characters[charIndex] && characters[charIndex].classList.contains("incorrect")) {
+                    characters[charIndex].classList.remove("incorrect");
+                } else if (charIndex > 0) {
+                    charIndex--;
+                    if (characters[charIndex].classList.contains("correct")) {
+                        totalCorrectChars--;
+                    }
+                    characters[charIndex].classList.remove("correct", "incorrect");
                 }
-                characters[charIndex].classList.remove("correct", "incorrect");
             }
         } else {
-            if (characters[charIndex].innerText == typedChar) {
+            if (modeSelect.value === "words" && characters[charIndex] && characters[charIndex].classList.contains("incorrect")) {
+                inpField.value = inpField.value.slice(0, -1);
+                return;
+            }
+
+            if (characters[charIndex].innerText === typedChar) {
                 characters[charIndex].classList.add("correct");
+                charIndex++;
+                totalCorrectChars++;
             } else {
                 mistakes++;
                 characters[charIndex].classList.add("incorrect");
+                if (modeSelect.value !== "words") {
+                    charIndex++;
+                }
             }
-            charIndex++;
-            
-            if (charIndex >= characters.length) {
+        }
+
+        if (charIndex >= characters.length) {
+            if (modeSelect.value === "words") {
+                charIndex = 0;
+                inpField.value = "";
+                loadTypingContent();
+                return;
+            } else {
                 wpmTag.innerText = calculateWPM();
                 mistakeTag.innerText = mistakes;
-                cpmTag.innerText = charIndex - mistakes;
+                cpmTag.innerText = totalCorrectChars;
                 progressTag.innerText = "100%";
                 accuracyTag.innerText = `${calculateAccuracy()}%`;
                 
@@ -179,11 +201,13 @@ function initTyping() {
         }
 
         characters.forEach(span => span.classList.remove("active"));
-        characters[charIndex].classList.add("active");
+        if (characters[charIndex]) {
+            characters[charIndex].classList.add("active");
+        }
 
         wpmTag.innerText = calculateWPM();
         mistakeTag.innerText = mistakes;
-        cpmTag.innerText = charIndex - mistakes;
+        cpmTag.innerText = totalCorrectChars;
         progressTag.innerText = `${calculateProgress(characters.length)}%`;
         accuracyTag.innerText = `${calculateAccuracy()}%`;
         keysPressedTag.innerText = `${calculateKeyspressed()}`;
@@ -198,8 +222,15 @@ function initTimer() {
         timeTag.innerText = timeLeft;
         wpmTag.innerText = calculateWPM();
     } else {
-        saveLastSession();
+        endTypingTest();
     }
+}
+
+function endTypingTest() {
+    clearInterval(timer);
+    saveLastSession();
+    inpField.value = "";
+    isTyping = false;
 }
 
 function resetGame() {
@@ -211,6 +242,7 @@ function resetGame() {
     timeLeft = maxTime;
     charIndex = mistakes = isTyping = 0;
     keysPressedCount = 0;
+    totalCorrectChars = 0;
     inpField.value = "";
     timeTag.innerText = timeLeft;
     wpmTag.innerText = 0;
