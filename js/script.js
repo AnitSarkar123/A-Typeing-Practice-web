@@ -2,6 +2,7 @@ const typingText = document.querySelector(".typing-text p"),
     modeSelect = document.getElementById("mode-select"),
     keySelector = document.getElementById("key-selector"),
     keySelect = document.getElementById("key-select"),
+    timeSelect = document.getElementById("time-select"),
     inpField = document.querySelector(".wrapper .input-field"),
     tryAgainBtn = document.querySelector(".content button"),
     timeTag = document.querySelector(".time span b"),
@@ -32,7 +33,7 @@ const typingModes = {
 };
 
 let timer,
-    maxTime = DEFAULT_TIME,
+    maxTime = Number(timeSelect.value),
     timeLeft = maxTime,
     charIndex = mistakes = isTyping = 0,
     keysPressedCount = 0,
@@ -60,6 +61,11 @@ function calculateAccuracy() {
 
     return Math.round((totalCorrectChars / totalTyped) * 100);
 }
+
+timeSelect.addEventListener("change", () => {
+    maxTime = Number(timeSelect.value);
+    resetGame();
+});
 
 document.addEventListener('keypress',(e) => {
     keysPressedCount++;
