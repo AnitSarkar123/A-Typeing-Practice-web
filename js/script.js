@@ -19,7 +19,6 @@ const lastWpmTag = document.getElementById("last-wpm"),
     lastMistakeTag = document.getElementById("last-mistakes"),
     lastKeysPressedTag = document.getElementById("last-keys-pressed");
 
-const DEFAULT_TIME = 300;
 const CHARS_PER_WORD = 5;
 const SECONDS_PER_MINUTE = 60;
 const TIMER_INTERVAL = 1000;
@@ -245,6 +244,7 @@ function resetGame() {
     timer = null;
     sessionSaved = false;
     isTyping = false;
+    maxTime = Number(timeSelect.value);
     timeLeft = maxTime;
     charIndex = mistakes = isTyping = 0;
     keysPressedCount = 0;
