@@ -1,0 +1,25 @@
+{
+  "name": "a-typeing-practice-web",
+  "version": "1.0.0",
+  "description": "A simple browser-based typing speed test that measures typing performance in real time. Users can practice typing with randomly selected paragraphs while tracking metrics such as Words Per Minute (WPM), Characters Per Minute (CPM), mistakes and remaining time.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnitSarkar123/A-Typeing-Practice-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AnitSarkar123/A-Typeing-Practice-web/issues"
+  },
+  "homepage": "https://github.com/AnitSarkar123/A-Typeing-Practice-web#readme",
+  "devDependencies": {
+    "prettier": "^3.9.6"
+  }
+}
