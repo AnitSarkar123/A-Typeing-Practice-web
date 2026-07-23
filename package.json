@@ -4,7 +4,7 @@
   "description": "A simple browser-based typing speed test that measures typing performance in real time. Users can practice typing with randomly selected paragraphs while tracking metrics such as Words Per Minute (WPM), Characters Per Minute (CPM), mistakes and remaining time.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "format": "prettier --write ."
   },
   "repository": {
@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/AnitSarkar123/A-Typeing-Practice-web#readme",
   "devDependencies": {
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
     "prettier": "^3.9.6"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   }
 }
