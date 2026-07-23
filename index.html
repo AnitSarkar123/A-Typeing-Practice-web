@@ -1,107 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <!-- Coding By CodingNepal - youtube.com/codingnepal -->
 <html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Typing Speed Test Game | Anit Sarkar</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>Typing Speed Test Game | Anit Sarkar</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+  <body class="light-mode">
+    <div class="theme-toggler">
+      <button class="theme-toggler-button" type="button">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
 
-<body class="light-mode" >
-  <div class="theme-toggler">
-    <button class="theme-toggler-button" type="button">
-      <i class="fa-solid fa-moon" ></i>
-    </button>
-  </div>
+    <div class="wrapper">
+      <input type="text" class="input-field" />
 
-  <div class="wrapper">
-    <input type="text" class="input-field">
-
-    <div class="content-box">
-
-      <div class="typing-options">
-        <label for="mode-select">Mode:</label>
-        <select id="mode-select">
-          <option value="paragraphs">Paragraphs</option>
-          <option value="words">Words</option>
-          <option value="sentences">Sentences</option>
-          <option value="specificKey">Specific Key</option>
-        </select>
-        <span id="key-selector" hidden>
-          <label for="key-select">Key:</label>
-          <select id="key-select">
-            <option value="homeRow">Home Row</option>
-            <option value="topRow">Top Row</option>
-            <option value="bottomRow">Bottom Row</option>
-            <option value="numbers">Numbers</option>
-            <option value="symbols">Symbols</option>
+      <div class="content-box">
+        <div class="typing-options">
+          <label for="mode-select">Mode:</label>
+          <select id="mode-select">
+            <option value="paragraphs">Paragraphs</option>
+            <option value="words">Words</option>
+            <option value="sentences">Sentences</option>
+            <option value="specificKey">Specific Key</option>
           </select>
-        </span>
-        <span id="time-selector">
-          <label for="time-select">Time:</label>
-          <select id="time-select">
-            <option value=300>300s</option>
-            <option value=150>150s</option>
-            <option value=100>100s</option>
-            <option value=50>50s</option>
-            <option value=30>30s</option>
-          </select>
-        </span>
-      </div>
-      <div class="typing-text">
-        <p></p>
-      </div>
-      <div class="content">
-        <ul class="result-details">
-          <li class="time">
-            <p>Time Left:</p>
-            <span><b>300</b>s</span>
-          </li>
-          <li class="mistake">
-            <p>Mistakes:</p>
-            <span>0</span>
-          </li>
-          <li class="wpm">
-            <p>WPM:</p>
-            <span>0</span>
-          </li>
-          <li class="cpm">
-            <p>CPM:</p>
-            <span>0</span>
-          </li>
-          <li class="progress">
-            <p>Progress:</p>
-            <span>0%</span>
-          </li>
-          <li class="accuracy">
-            <p>Accuracy:</p>
-            <span>100%</span>
-          </li>
-          <li class="charCount">
-            <p>Keys pressed:</p>
-            <span>0</span>
-          </li>
-        </ul>
-        <button type="button">Try Again</button>
-      </div>
-      <div class="last-session">
-        <h3>Last Session</h3>
-        <ul class="last-session-details">
-          <li>WPM: <span id="last-wpm">No Data</span></li>
-          <li>CPM: <span id="last-cpm">No Data</span></li>
-          <li>Accuracy: <span id="last-accuracy">No Data</span></li>
-          <li>Mistakes: <span id="last-mistakes">No Data</span></li>
-          <li>Keys Pressed: <span id="last-keys-pressed">No data></span></li>
-        </ul>
+          <span id="key-selector" hidden>
+            <label for="key-select">Key:</label>
+            <select id="key-select">
+              <option value="homeRow">Home Row</option>
+              <option value="topRow">Top Row</option>
+              <option value="bottomRow">Bottom Row</option>
+              <option value="numbers">Numbers</option>
+              <option value="symbols">Symbols</option>
+            </select>
+          </span>
+          <span id="time-selector">
+            <label for="time-select">Time:</label>
+            <select id="time-select">
+              <option value="300">300s</option>
+              <option value="150">150s</option>
+              <option value="100">100s</option>
+              <option value="50">50s</option>
+              <option value="30">30s</option>
+            </select>
+          </span>
+        </div>
+        <div class="typing-text">
+          <p></p>
+        </div>
+        <div class="content">
+          <ul class="result-details">
+            <li class="time">
+              <p>Time Left:</p>
+              <span><b>300</b>s</span>
+            </li>
+            <li class="mistake">
+              <p>Mistakes:</p>
+              <span>0</span>
+            </li>
+            <li class="wpm">
+              <p>WPM:</p>
+              <span>0</span>
+            </li>
+            <li class="cpm">
+              <p>CPM:</p>
+              <span>0</span>
+            </li>
+            <li class="progress">
+              <p>Progress:</p>
+              <span>0%</span>
+            </li>
+            <li class="accuracy">
+              <p>Accuracy:</p>
+              <span>100%</span>
+            </li>
+            <li class="charCount">
+              <p>Keys pressed:</p>
+              <span>0</span>
+            </li>
+          </ul>
+          <button type="button">Try Again</button>
+        </div>
+        <div class="last-session">
+          <h3>Last Session</h3>
+          <ul class="last-session-details">
+            <li>WPM: <span id="last-wpm">No Data</span></li>
+            <li>CPM: <span id="last-cpm">No Data</span></li>
+            <li>Accuracy: <span id="last-accuracy">No Data</span></li>
+            <li>Mistakes: <span id="last-mistakes">No Data</span></li>
+            <li>Keys Pressed: <span id="last-keys-pressed">No data></span></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="js/paragraphs.js"></script>
-  <script src="js/script.js"></script>
-</body>
-
+    <script src="js/paragraphs.js"></script>
+    <script src="js/script.js"></script>
+  </body>
 </html>

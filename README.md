@@ -13,6 +13,7 @@ A simple browser-based typing speed test that measures typing performance in rea
 - Restart test functionality
 
 ## Live Demo
+
 [Open the typing test](https://a-typeing-practice-web.vercel.app/)
 
 ## Project Structure
