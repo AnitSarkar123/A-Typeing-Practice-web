@@ -19,6 +19,10 @@ const lastWpmTag = document.getElementById('last-wpm'),
   lastMistakeTag = document.getElementById('last-mistakes'),
   lastKeysPressedTag = document.getElementById('last-keys-pressed');
 
+const customTextContainer = document.getElementById("custom-text-container"),
+    customTextInput = document.getElementById("custom-text"),
+    loadCustomTextBtn = document.getElementById("load-custom-text");
+
 const CHARS_PER_WORD = 5;
 const SECONDS_PER_MINUTE = 60;
 const TIMER_INTERVAL = 1000;
@@ -115,16 +119,33 @@ function generateKeyPractice() {
   return keySets[keySelect.value][Math.floor(Math.random() * keySets[keySelect.value].length)];
 }
 
-function loadTypingContent() {
-  let text = '';
+function loadCustomText() {
+    if (!customTextInput.value.trim()) {
+        alert("Please enter some text first.");
+        return;
+    }
+    resetGame();
+}
 
-  if (modeSelect.value === 'specificKey') {
+function loadTypingContent() {
+  let text = "";
+
+if (modeSelect.value === "custom") {
+    text = customTextInput.value.trim();
+
+    if (!text) {
+        typingText.replaceChildren();
+        return;
+    }
+}
+else if (modeSelect.value === "specificKey") {
     text = generateKeyPractice();
-  } else {
+}
+else {
     const dataset = typingModes[modeSelect.value];
     const randomIndex = Math.floor(Math.random() * dataset.length);
     text = dataset[randomIndex];
-  }
+}
 
   const fragment = document.createDocumentFragment();
 
@@ -249,7 +270,8 @@ function resetGame() {
   isTyping = false;
   maxTime = Number(timeSelect.value);
   timeLeft = maxTime;
-  charIndex = mistakes = isTyping = 0;
+  charIndex = 0;
+  mistakes = 0;
   keysPressedCount = 0;
   totalCorrectChars = 0;
   inpField.value = '';
@@ -294,14 +316,22 @@ document.addEventListener('keydown', () => inpField.focus());
 document.addEventListener('keydown', handleKeyboardShortcuts);
 typingText.addEventListener('click', () => inpField.focus());
 
-modeSelect.addEventListener('change', () => {
-  keySelector.hidden = modeSelect.value !== 'specificKey';
-  resetGame();
+modeSelect.addEventListener("change", () => {
+    keySelector.hidden = modeSelect.value !== "specificKey";
+    customTextContainer.hidden = modeSelect.value !== "custom";
+
+    if (modeSelect.value === "custom") {
+        typingText.replaceChildren();
+        inpField.value = "";
+        return;
+    }
+    resetGame();
 });
 
 keySelect.addEventListener('change', resetGame);
 inpField.addEventListener('input', initTyping);
 tryAgainBtn.addEventListener('click', resetGame);
+loadCustomTextBtn.addEventListener("click", loadCustomText);
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
