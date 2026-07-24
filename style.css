@@ -1,48 +1,42 @@
 /* Import Google Font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-:root{
-  --bg-color: #17A2B8;
+:root {
+  --bg-color: #17a2b8;
   --text-color: #000;
   --text-correct-color: #56964f;
   --text-incorrect-color: #cb3439;
   --text-incorrect-bg-color: #ffc0cb;
-  --text-selection-bg-color: #17A2B8;
+  --text-selection-bg-color: #17a2b8;
   --text-selection-color: #fff;
-  --active-letter-color: #17A2B8;
-  --button-bg-color: #17A2B8;
+  --active-letter-color: #17a2b8;
+  --button-bg-color: #17a2b8;
   --button-text-color: #fff;
   --button-hover-bg-color: #1491a4;
   --wrapper-bg-color: #fff;
   --wrapper-border-color: #0000004d;
   --line-color: #bfbfbf;
 }
-.light-mode{
-  --bg-color: linear-gradient(
-    135deg,
-  #4944a9,
-  #17A2B8,
-  skyblue,
-  #17A2B8, 
-  #4944a9);
+.light-mode {
+  --bg-color: linear-gradient(135deg, #4944a9, #17a2b8, skyblue, #17a2b8, #4944a9);
   --text-color: #000;
 
   --text-correct-color: #56964f;
   --text-incorrect-color: #cb3439;
   --text-incorrect-bg-color: #ffc0cb;
 
-  --text-selection-bg-color: #17A2B8;
+  --text-selection-bg-color: #17a2b8;
 
   --text-selection-color: #fff;
 
-  --active-letter-color: #17A2B8;
+  --active-letter-color: #17a2b8;
 
-  --button-bg-color: #17A2B8;
+  --button-bg-color: #17a2b8;
   --button-text-color: #fff;
   --button-hover-bg-color: #467fce;
 
@@ -52,14 +46,7 @@
   --line-color: #bfbfbf;
 }
 .dark-mode {
-  background: linear-gradient(
-  135deg,
-  #161b22,
-  #1f2937,
-  #0f4c5c,
-  #1f2937,
-  #161b22
-);
+  background: linear-gradient(135deg, #161b22, #1f2937, #0f4c5c, #1f2937, #161b22);
   --text-color: #fff;
 
   --text-correct-color: #4ade80;
@@ -80,14 +67,14 @@
 
   --line-color: #f0f0f3;
 }
-body{
+body {
   padding: 0 10px;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   background: var(--bg-color);
 }
-.theme-toggler-button{
+.theme-toggler-button {
   position: absolute;
   top: 10px;
   right: 20px;
@@ -98,14 +85,14 @@ body{
   border-radius: 5px;
   background: var(--button-bg-color);
 }
-.theme-toggler button:hover{
+.theme-toggler button:hover {
   background: var(--button-hover-bg-color);
 }
-::selection{
+::selection {
   color: var(--text-selection-color);
   background: var(--text-selection-bg-color);
 }
-.wrapper{
+.wrapper {
   margin: 20vh auto;
   width: 770px;
   padding: 35px;
@@ -113,48 +100,48 @@ body{
   border-radius: 10px;
   box-shadow: 0 10px 15px var(--wrapper-border-color);
 }
-.wrapper .input-field{
+.wrapper .input-field {
   opacity: 0;
   z-index: -999;
   position: absolute;
 }
-.wrapper .content-box{
+.wrapper .content-box {
   padding: 13px 20px 0;
   border-radius: 10px;
   border: 1px solid var(--line-color);
 }
-.content-box .typing-text{
+.content-box .typing-text {
   overflow: hidden;
   max-height: 256px;
 }
-.typing-text::-webkit-scrollbar{
+.typing-text::-webkit-scrollbar {
   width: 0;
 }
-.typing-text p{
+.typing-text p {
   font-size: 21px;
   text-align: justify;
   letter-spacing: 1px;
   word-break: break-all;
 }
-.typing-text p span{
+.typing-text p span {
   position: relative;
   color: var(--text-color);
 }
-.typing-text p span.correct{
+.typing-text p span.correct {
   color: var(--text-correct-color);
 }
-.typing-text p span.incorrect{
+.typing-text p span.incorrect {
   color: var(--text-incorrect-color);
   outline: 1px solid var(--wrapper-bg-color);
   background: var(--text-incorrect-bg-color);
   border-radius: 4px;
 }
-.typing-text p span.active{
+.typing-text p span.active {
   color: var(--active-letter-color);
 }
-.typing-text p span.active::before{
+.typing-text p span.active::before {
   position: absolute;
-  content: "";
+  content: '';
   height: 2px;
   width: 100%;
   bottom: 0;
@@ -164,12 +151,12 @@ body{
   background: var(--active-letter-color);
   animation: blink 1s ease-in-out infinite;
 }
-@keyframes blink{
-  50%{ 
-    opacity: 1; 
+@keyframes blink {
+  50% {
+    opacity: 1;
   }
 }
-.content-box .content{
+.content-box .content {
   margin-top: 17px;
   display: flex;
   padding: 12px 0;
@@ -178,7 +165,7 @@ body{
   justify-content: space-between;
   border-top: 1px solid var(--line-color);
 }
-.content button{
+.content button {
   outline: none;
   border: none;
   width: 105px;
@@ -190,13 +177,13 @@ body{
   background: var(--button-bg-color);
   transition: transform 0.3s ease;
 }
-.content button:active{
+.content button:active {
   transform: scale(0.97);
 }
-.content button:hover{
+.content button:hover {
   background: var(--button-hover-bg-color);
 }
-.content .result-details{
+.content .result-details {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -204,74 +191,74 @@ body{
   justify-content: space-between;
   color: var(--text-color);
 }
-.result-details li{
+.result-details li {
   display: flex;
   height: 20px;
   list-style: none;
   position: relative;
   align-items: center;
 }
-.result-details li:not(:first-child){
+.result-details li:not(:first-child) {
   padding-left: 22px;
   border-left: 1px solid var(--line-color);
 }
-.result-details li p{
+.result-details li p {
   font-size: 19px;
 }
-.result-details li span{
+.result-details li span {
   display: block;
   font-size: 20px;
   margin-left: 10px;
 }
-li span b{
+li span b {
   font-weight: 500;
 }
-li:not(:first-child) span{
+li:not(:first-child) span {
   font-weight: 500;
 }
 @media (max-width: 745px) {
-  .wrapper{
+  .wrapper {
     padding: 20px;
   }
-  .content-box .content{
+  .content-box .content {
     padding: 20px 0;
   }
-  .content-box .typing-text{
+  .content-box .typing-text {
     max-height: 100%;
   }
-  .typing-text p{
+  .typing-text p {
     font-size: 19px;
     text-align: left;
   }
-  .content button{
+  .content button {
     width: 100%;
     font-size: 15px;
     padding: 10px 0;
     margin-top: 20px;
   }
-  .content .result-details{
+  .content .result-details {
     width: 100%;
   }
-  .result-details li:not(:first-child){
+  .result-details li:not(:first-child) {
     border-left: 0;
     padding: 0;
   }
-  .result-details li p, 
-  .result-details li span{
+  .result-details li p,
+  .result-details li span {
     font-size: 17px;
   }
 }
 @media (max-width: 518px) {
-  .wrapper .content-box{
+  .wrapper .content-box {
     padding: 10px 15px 0;
   }
-  .typing-text p{
+  .typing-text p {
     font-size: 18px;
   }
-  .result-details li{
+  .result-details li {
     margin-bottom: 10px;
   }
-  .content button{
+  .content button {
     margin-top: 10px;
   }
 }

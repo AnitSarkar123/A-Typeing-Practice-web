@@ -1,8 +1,8 @@
 ---
 name: ✨ Feature Request
 about: Suggest a new feature or enhancement for LearnSphere
-title: "[Feature]: "
-labels: ["enhancement", "needs-discussion"]
+title: '[Feature]: '
+labels: ['enhancement', 'needs-discussion']
 assignees: []
 ---
 

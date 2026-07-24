@@ -29,9 +29,9 @@ Closes #<!-- issue number -->
 
 <!-- List the specific changes made in this PR -->
 
-- 
-- 
-- 
+-
+-
+-
 
 ---
 
@@ -52,8 +52,8 @@ Closes #<!-- issue number -->
 <!-- For UI changes, add before/after screenshots. Delete if not applicable. -->
 
 | Before | After |
-|--------|-------|
-| | |
+| ------ | ----- |
+|        |       |
 
 ---
 

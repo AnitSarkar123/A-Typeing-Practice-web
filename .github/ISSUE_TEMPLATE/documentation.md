@@ -1,8 +1,8 @@
 ---
 name: 📚 Documentation Improvement
 about: Suggest improvements to documentation, README, or guides
-title: "[Docs]: "
-labels: ["documentation"]
+title: '[Docs]: '
+labels: ['documentation']
 assignees: []
 ---
 

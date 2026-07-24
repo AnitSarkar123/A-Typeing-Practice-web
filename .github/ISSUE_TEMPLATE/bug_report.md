@@ -1,8 +1,8 @@
 ---
 name: 🐛 Bug Report
 about: Report a reproducible bug or unexpected behaviour
-title: "[Bug]: "
-labels: ["bug", "needs-triage"]
+title: '[Bug]: '
+labels: ['bug', 'needs-triage']
 assignees: []
 ---
 
