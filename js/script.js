@@ -38,7 +38,7 @@ let timer,
     keysPressedCount = 0,
     totalCorrectChars = 0;
 
-function calculateWPM() {
+function calculateWPM(totalCorrectChars, maxTime, timeLeft) {
     let wpm = Math.round(
         (totalCorrectChars / CHARS_PER_WORD) /
         (maxTime - timeLeft) *
@@ -48,11 +48,11 @@ function calculateWPM() {
     return wpm < 0 || !wpm || wpm === Infinity ? 0 : wpm;
 }
 
-function calculateProgress(totalCharacters) {
+function calculateProgress(charIndex, totalCharacters) {
     return Math.round((charIndex / totalCharacters) * 100);
 }
 
-function calculateAccuracy() {
+function calculateAccuracy(totalCorrectChars, mistakes) {
     const totalTyped = totalCorrectChars + mistakes;
     if (totalTyped === 0) {
         return 100;
@@ -78,9 +78,9 @@ function saveLastSession() {
     if (sessionSaved) return;
 
     const session = {
-        wpm: calculateWPM(),
+        wpm: calculateWPM(totalCorrectChars, maxTime, timeLeft),
         cpm: totalCorrectChars,
-        accuracy: calculateAccuracy(),
+        accuracy: calculateAccuracy(totalCorrectChars, mistakes),
         mistakes: mistakes,
         keysPressed: keysPressedCount
     };
@@ -194,11 +194,11 @@ function initTyping() {
                 loadTypingContent();
                 return;
             } else {
-                wpmTag.innerText = calculateWPM();
+                wpmTag.innerText = calculateWPM(totalCorrectChars, maxTime, timeLeft);
                 mistakeTag.innerText = mistakes;
                 cpmTag.innerText = totalCorrectChars;
                 progressTag.innerText = "100%";
-                accuracyTag.innerText = `${calculateAccuracy()}%`;
+                accuracyTag.innerText = `${calculateAccuracy(totalCorrectChars, mistakes)}%`;
                 
                 endTypingTest();
                 return;
@@ -210,11 +210,11 @@ function initTyping() {
             characters[charIndex].classList.add("active");
         }
 
-        wpmTag.innerText = calculateWPM();
+        wpmTag.innerText = calculateWPM(totalCorrectChars, maxTime, timeLeft);
         mistakeTag.innerText = mistakes;
         cpmTag.innerText = totalCorrectChars;
-        progressTag.innerText = `${calculateProgress(characters.length)}%`;
-        accuracyTag.innerText = `${calculateAccuracy()}%`;
+        progressTag.innerText = `${calculateProgress(charIndex, characters.length)}%`;
+        accuracyTag.innerText = `${calculateAccuracy(totalCorrectChars, mistakes)}%`;
         keysPressedTag.innerText = `${calculateKeyspressed()}`;
     } else {
         saveLastSession();
@@ -225,7 +225,7 @@ function initTimer() {
     if (timeLeft > 0) {
         timeLeft--;
         timeTag.innerText = timeLeft;
-        wpmTag.innerText = calculateWPM();
+        wpmTag.innerText = calculateWPM(totalCorrectChars, maxTime, timeLeft);
     } else {
         endTypingTest();
     }
@@ -303,3 +303,13 @@ modeSelect.addEventListener("change", () => {
 keySelect.addEventListener("change", resetGame);
 inpField.addEventListener("input", initTyping);
 tryAgainBtn.addEventListener("click", resetGame);
+
+if (typeof module !== "undefined" && module.exports) {
+    module.exports = {
+        calculateWPM,
+        calculateProgress,
+        calculateAccuracy,
+        calculateKeyspressed
+    };
+}
+
